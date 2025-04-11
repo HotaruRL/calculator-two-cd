@@ -1,6 +1,13 @@
 import java.util.Scanner;
 
+
+
 public class Main {
+
+    public static double futureValue(double P, double r, int t){
+        int DAYS_IN_YEAR = 365;
+        return P * (Math.pow((1 + (r / DAYS_IN_YEAR)), (DAYS_IN_YEAR * t)));
+    }
     public static void main(String[] args) {
 
 //        Calculator 2: A calculator that determines the future value of a
@@ -15,35 +22,33 @@ public class Main {
 //        Principal (P): This is the initial deposit amount.
         System.out.println("How much is your deposit? e.g. 1000");
         double principalAmount = s.nextDouble();
-        double P = principalAmount;
+
 
 //        Annual Interest Rate (r): The nominal annual interest rate in decimal form
 //        (e.g., 1.75% = 0.0175).
         System.out.println("How much is the Annual Interest Rate? e.g. 1.75");
         double rawRate = s.nextDouble();
         double annualInterestRate = rawRate / 100;
-        double r = annualInterestRate;
+
 
 //        Number of Years (t): The total number of years the deposit will earn interest.
         System.out.println("How many years until the CD matures? e.g. 5");
         int years = s.nextInt();
-        int t = years;
+
 //        Days Per Year: Daily compounding assumes 365 days per year.
 //        Total Number of Days: This is 365 × t (because there are 365 days per year).
 
         // OUTPUT VARIABLES
-//        Future Value (FV)
-        double FV = 0;
+//
 
-//        Total Interest Earned = FV - P
-        double total_Interest_Earned = 0;
+//        Total Interest Earned = futureValue - P
 
         // FORMULAS
-        FV = P * (Math.pow((1+ (r / 365)), (365 * t)));
-        total_Interest_Earned = FV - P;
+        double fv = futureValue(principalAmount,annualInterestRate,years);
+        double total_Interest_Earned = fv - principalAmount;
 //        b. It would display the future value and the total interest earned
         // OUTPUTS
-        System.out.printf("The future value of your CD is: $%.2f \n", FV);
+        System.out.printf("The future value of your CD is: $%.2f \n", fv);
         System.out.printf("The total interest you would have earned is: $%.2f \n", total_Interest_Earned);
 
 
