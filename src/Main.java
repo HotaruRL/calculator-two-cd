@@ -39,7 +39,7 @@ public class Main {
         double total_Interest_Earned = 0;
 
         // FORMULAS
-        FV = P * (1 + Math.pow((r / 365), (365 * t)));
+        FV = P * (Math.pow((1+ (r / 365)), (365 * t)));
         total_Interest_Earned = FV - P;
 //        b. It would display the future value and the total interest earned
         // OUTPUTS
