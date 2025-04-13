@@ -1,14 +1,17 @@
 import java.util.Scanner;
-//Hau
-
 
 public class Main {
-
-    public static double futureValue(double P, double r, int t){
+    public static double futureValueCalc(double P, double r, int t){
         int DAYS_IN_YEAR = 365;
+        // P = principal amount (initial deposit amount)
+        // r = annual interest rate
+        // t = total numbers of years the deposit will earn interest
         return P * (Math.pow((1 + (r / DAYS_IN_YEAR)), (DAYS_IN_YEAR * t)));
     }
+
     public static void main(String[] args) {
+        // CREATE AN INSTANCE OF SCANNER NAMED s
+        Scanner s = new Scanner(System.in);
 
 //        Calculator 2: A calculator that determines the future value of a
 //        one-time deposit assuming compound interest - it is used to help
@@ -17,46 +20,33 @@ public class Main {
 //        a. It would accept the deposit, interest rate, and number of
 //        years from the user
 
+//        b. It would display the future value and the total interest earned
+
+//        Example: If you deposit $1,000 in a CD that earns 1.75%
+//        interest and matures in 5 years, your CD's ending balance will
+//        be $1,092.62, and you would have earned $92.62 in interest
+//        Note: The numbers above assume daily compounding
+
+        // INTRO
+        System.out.println("\n--------------- CD Future Value Calculator ---------------");
+
         // USER INPUT VARIABLES
-        Scanner s = new Scanner(System.in);
-//        Principal (P): This is the initial deposit amount.
-        System.out.println("How much is your deposit? e.g. 1000");
+        System.out.println("\nPlease enter your initial deposit amount e.g. 1000: ");
         double principalAmount = s.nextDouble();
 
-
-//        Annual Interest Rate (r): The nominal annual interest rate in decimal form
-//        (e.g., 1.75% = 0.0175).
-        System.out.println("How much is the Annual Interest Rate? e.g. 1.75");
+        System.out.println("Please enter the annual interest rate e.g. 1.75: ");
         double rawRate = s.nextDouble();
+        // convert rate from % to decimals
         double annualInterestRate = rawRate / 100;
 
-
-//        Number of Years (t): The total number of years the deposit will earn interest.
-        System.out.println("How many years until the CD matures? e.g. 5");
+        System.out.println("Please enter the total number of years until CD is matured e.g. 5: ");
         int years = s.nextInt();
 
-//        Days Per Year: Daily compounding assumes 365 days per year.
-//        Total Number of Days: This is 365 × t (because there are 365 days per year).
-
-        // OUTPUT VARIABLES
-//
-
-//        Total Interest Earned = futureValue - P
-
-        // FORMULAS
-        double fv = futureValue(principalAmount,annualInterestRate,years);
-        double total_Interest_Earned = fv - principalAmount;
-//        b. It would display the future value and the total interest earned
         // OUTPUTS
-        System.out.printf("The future value of your CD is: $%.2f \n", fv);
-        System.out.printf("The total interest you would have earned is: $%.2f \n", total_Interest_Earned);
+        double futureValue = futureValueCalc(principalAmount,annualInterestRate,years);
+        double total_Interest_Earned = futureValue - principalAmount;
 
-
-//    Example: If you deposit $1,000 in a CD that earns 1.75%
-//        interest and matures in 5 years, your CD's ending balance will
-//        be $1,092.62 and you would have earned $92.62 in interest
-//    Note: The numbers above assume daily compounding
-
-
+        // DISPLAY
+        System.out.printf("\nIf you deposit $%.2f in a CD that earns %.2f%% interest and matures in %d years,\nyour CD's ending balance will be $%.2f,\nand you would have earned $%.2f in interest\n\n*** Note: The numbers above assume daily compounding.***\n", principalAmount, rawRate, years, futureValue, total_Interest_Earned);
     }
 }
